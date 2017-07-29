@@ -1,0 +1,52 @@
+<?php
+
+    require_once('../model/Membro.class.php');
+    require_once('../model/Advertencia.class.php');
+
+    session_start();
+    if(isset($_POST['loginAttempt'])){
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+
+        $user = new Membro($login, $password);
+        if($user->auth()){
+            $_SESSION['auth'] = true;
+            $_SESSION['login'] = $_POST["login"];
+            $_SESSION['role'] = $user->getRole();
+            $_SESSION['name'] = $user->getName();
+            $_SESSION['privilege'] = $user->getPrivilege();
+            $_SESSION['score'] = $user->getScore();
+            $_SESSION['id'] = $user->getId();
+            if($_SESSION['privilege']){
+                header("location:../view/pcd.php");
+            }
+            else{
+                header("location:../view/pcduser.php");
+            }
+        }
+        else{
+            header("location:../view/login2.php?valid=false");
+        }
+    }
+
+    if(isset($_POST['warningAttempt'])){
+        $date = $_POST['date'];
+        $reason = $_POST['reason'];
+        $score = $_POST['score'];
+        $responsible = $_POST['responsible'];
+        $dismissed = $_POST['dismissed'];
+        $adv = new Advertencia($date, $reason, $score, $responsible, $dismissed);
+        if($adv->okay()){
+            $_SESSION['okay'] = true;
+            header("location:../view/painel.php?send=true");
+        }
+        
+    }
+
+    if(isset($_POST['logoutAttempt'])) { 
+        session_destroy(); 
+        header("location:../index.php");
+    }   
+
+
+?>
