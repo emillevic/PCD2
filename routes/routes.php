@@ -2,6 +2,8 @@
 
     require_once('../model/Membro.class.php');
     require_once('../model/Advertencia.class.php');
+    require_once('../controller/MembersController.class.php');
+    require_once('../controller/AdvertenciasController.class.php');
 
     session_start();
     if(isset($_POST['loginAttempt'])){
@@ -27,6 +29,23 @@
         else{
             header("location:../view/login2.php?valid=false");
         }
+    }
+
+    if(isset($_POST['registerAttempt'])){
+
+        $membersController = new MembersController();
+        $name = $_POST["name"]; 
+        $login = $_POST["login"];
+        $password = md5($_POST["password"]);
+        $score = $_POST["score"];
+        $role = $_POST["role"];
+        $privilege = $_POST["privilege"];
+
+        $member = new Membro($login, $password, $id=null, $score, $role, $name, $privilege);
+        $membersController->registerMemberDB($member);
+                
+        header("location../view/painel.php?valid=true");
+
     }
 
     if(isset($_POST['warningAttempt'])){

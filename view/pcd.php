@@ -50,6 +50,8 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll scrollSuave" href="index.html">Página Inicial</a></li>
+                    <li><a class="page-scroll scrollSuave" href="pcd.php">Membros</a></li>
                     <li><a class="page-scroll scrollSuave" href="painel.php">Cadastrar Membros</a></li>
                     
                 </ul>
@@ -109,8 +111,11 @@
                                                 <hr class='dark'>
                                                 <div>
                                                     <p class='text-Window text-center'><span class='numberPunition'>#1</span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>XX</span> <span class='topicPunition'>PONTOS EM XX/XX/XXXX POR XXXXXXXXXX<br><span class='responsiblePunition'>RESPONSÁVEL:</span> XXXXXXXX</p>
-                                                    <hr>                                            
+                                                    <hr><br>     
+                                                    <a href='painel.php' class='page-scroll btn btn-primary btn-xl sr-button'>Adicionar Advertência</a>
+                                                    <br>                                       
                                                 </div>
+                                                
                                             </div>
                                             </div>
                                         </div>

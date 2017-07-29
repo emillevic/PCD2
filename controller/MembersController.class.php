@@ -1,6 +1,7 @@
 <?php
 
 require_once("../database/Connection.class.php");
+require_once('../model/Membro.class.php');
 
 class MembersController {
 	
@@ -27,6 +28,14 @@ class MembersController {
         	array_push($member, $row);
         }
         return $member;
+    }
+
+    public function registerMemberDB($member){
+        $conn = Connection::getInstance();
+
+        $query = "INSERT INTO membros(id,name,login,password,score,role,privilege) VALUES (null,'".$member->getName()."','".$member->getLogin()."','".$member->getPassword()."', '".$member->getScore()."', '".$member->getRole()."', '".$member->getPrivilege()."')"; //String com consulta SQL da inserção
+
+        $sql = $conn->query($query);
     }
 
 

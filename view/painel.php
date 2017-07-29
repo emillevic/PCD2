@@ -1,6 +1,7 @@
     <?php
         session_start();
         require_once("../database/Connection.class.php");
+        require_once("../controller/MembersController.class.php");
 ?>
 
 
@@ -47,8 +48,10 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll scrollSuave" href="index.html">Página Inicial</a></li>
+                    <li><a class="page-scroll scrollSuave" href="pcd.php">Membros</a></li>
                     <li><a class="page-scroll scrollSuave" href="painel.php">Cadastrar Membros</a></li>
-                    <li><a class="page-scroll scrollSuave" href="#KN">Logoff</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -141,21 +144,7 @@
         <input type="submit" value="Logout" name="logoutAttempt"/>
     </form>
     </div>
- 			<?php
-                
-                //Abaixo atribuímos os valores provenientes do formulário pelo método POST
-                $name = $_POST["name"]; 
-                $login = $_POST["login"];
-                $password = $_POST["password"];
-                $score = $_POST["score"];
-                $role = $_POST["role"];
-                $privilege = $_POST["privilege"];
 
-                $string_sql = "INSERT INTO membros(id,name,login,password,score,role,privilege) VALUES (null,'$name','$login','$password', '$score', '$role', '$privilege')"; //String com consulta SQL da inserção
-                
-                echo"ok";
-
-?>                                                                                                                       
             </div>
         </div>
         <a href="index.html" class="page-scroll btn btn-primary btn-xl sr-button">Voltar</a>
@@ -163,6 +152,13 @@
         </div>
     </div>  
 
+<?php
+    if(isset($_GET['valid'])){
+        if($_GET['valid']=="true"){
+            echo "<h3>Membro Cadastrado!</h3>";
+        }
+    }
+?>
 
 </body>
 </html>
