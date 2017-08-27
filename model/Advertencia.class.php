@@ -7,12 +7,21 @@
         public $responsible = null;
         public $dismissed = null;
 
-        function __construct($date, $reason, $score, $responsible, $dismissed){
+        function __construct($id=null, $date, $reason, $score, $responsible, $dismissed, $idmember){
+            $this->id = $id;
             $this->date = $date;
             $this->reason = $reason;
             $this->score = $score;
             $this->responsible = $responsible;
             $this->dismissed = $dismissed;
+            $this->idmember = $idmember;
+        }
+        function getId(){
+            return $this->id;
+        }
+
+        function setId($id){
+            $this->id = $id;
         }
 
         function getDate(){
@@ -55,6 +64,13 @@
             $this->dismissed = $dismissed;
         }
 
+        function getIdMember(){
+            return $this->idmember;
+        }
+
+        function setIdMember($idmember){
+            $this->idmember = $idmember;
+        }
         function okay(){
             return true;
         }

@@ -57,7 +57,6 @@
         </div>
     </nav>
 
-    <div>
         <div class="modal-header">
             <img class="img img-responsive img-companyLogo" src="assets/images/ecomp/logoNome.png" width="200" height="50"></img>                                                                                                    
             <h1 id="insideWidow" class="memberName text-right">
@@ -76,37 +75,34 @@
         <div class="form">
         <div class="modal-body">
             <hr class="dark">
-            <p class="text-center historicTitle">CADASTRAR MEMBRO</p>
+            <p class="text-center historicTitle">Adicionar advertência</p>
             <hr class="dark">
-            <div>
-                <form action="../routes/routes.php" method="POST">
-            <label for="text">Nome:</label>
-            <input type="text" name="name" placeholder="Nome"/>
-            <br>
-            <br>
-            <label for="text">Login:</label>
-            <input type="text" name="login" placeholder="Login"/>
-            <br><br>
-            <label for="text">Senha:</label>
-            <input type="text" name="password" placeholder="Senha"/>
-            <br><br>
-            <label for="number">Pontos:</label>
-            <input type="number" name="score" placeholder="Pontos"/>
-            <br><br>
-            <label for="text">Cargo:</label>
-            <input type="text" name="role" placeholder="Cargo"/>
-            <br><br>
-            <label for="text">Privilegio:</label><br>
-            <input type="radio" name="privilege" value="1"> ADMINISTRADOR <br>
-            <input type="radio" name="privilege" value="0"> USUÁRIO <br>
-            <br><br>
-            <input type="submit" name="registerAttempt" value="Enviar"/>
-    </form>
-    <form action="../routes/routes.php" method="POST">
-        <input type="submit" value="Logout" name="logoutAttempt"/>
-    </form>
-    </div>
-
+               <div class="form">
+                    <hr><br>
+                    <form action="../routes/routes.php" method="POST">
+                        <label for="text">ID Membro:</label>
+                        <input type="number" name="idmembro" placeholder="Id Membro"/>
+                        <br>
+                        <br>
+                        <label for="text">Data:</label>
+                        <input type="date" name="date" placeholder="Data"/>
+                        <br><br>
+                        <label for="text">Motivo:</label>
+                        <input type="text" name="reason" placeholder="Motivo" size="80"/>
+                        <br><br>
+                        <label for="number">Pontos:</label>
+                        <input type="number" name="score" placeholder="Pontos"/>
+                        <br><br>
+                        <label for="text">Responsável:</label>
+                        <input type="text" name="responsible" placeholder="Responsável"/>
+                        <br><br>
+                        <label for="text">Indeferido:</label><br>
+                        <input type="radio" name="dismissed" value="1"> Sim <br>
+                        <input type="radio" name="dismissed" value="0"> Não <br>
+                        <br><br>
+                        <input type="submit" name="warningAttempt" value="Enviar"/>
+                    </form>
+                </div>
             </div>
         </div>
         <a href="index.html" class="page-scroll btn btn-primary btn-xl sr-button">Voltar</a>
@@ -114,13 +110,12 @@
         </div>
     </div>  
 
+
+
 <?php
-    if(isset($_GET['valid'])){
-        if($_GET['valid']=="true"){
-            echo "<h3>Membro Cadastrado!</h3>";
+    if(isset($_GET['send'])){
+        if($_GET['send']=="true"){
+            echo "<h3>Advertência Enviada!</h3>";
         }
     }
 ?>
-
-</body>
-</html>

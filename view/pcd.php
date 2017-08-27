@@ -109,12 +109,13 @@
                                                 <hr class='dark'>
                                                 <p class='text-center historicTitle'>HISTÓRICO</p>
                                                 <hr class='dark'>
-                                                <div>
-                                                    <p class='text-Window text-center'><span class='numberPunition'>#1</span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>XX</span> <span class='topicPunition'>PONTOS EM XX/XX/XXXX POR XXXXXXXXXX<br><span class='responsiblePunition'>RESPONSÁVEL:</span> XXXXXXXX</p>
-                                                    <hr><br>     
-                                                    <a href='painel.php' class='page-scroll btn btn-primary btn-xl sr-button'>Adicionar Advertência</a>
-                                                    <br>                                       
-                                                </div>
+                                                <div>";
+                                                    for ($j=0; $j < sizeof($advertencias) ; $j++) {
+                                                        echo "<p class='text-Window text-center'><span class='numberPunition'>#".$advertencias[$i]['id']." - </span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>".$advertencias[$i]['score']."</span> <span class='topicPunition'>PONTOS EM ".$advertencias[$i]['date']." POR " .$advertencias[$i]['reason']."<br><span class='responsiblePunition'>RESPONSÁVEL:</span>" .$advertencias[$i]['responsavel']."</p>";
+                                                            echo "<hr>"; 
+                                                    }                                      
+                                                echo"</div>
+                                                <a href='paineladv.php' class='page-scroll btn btn-primary btn-xl sr-button'>Adicionar Advertência</a>
                                                 
                                             </div>
                                             </div>

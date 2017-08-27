@@ -34,6 +34,7 @@
     if(isset($_POST['registerAttempt'])){
 
         $membersController = new MembersController();
+
         $name = $_POST["name"]; 
         $login = $_POST["login"];
         $password = md5($_POST["password"]);
@@ -44,20 +45,26 @@
         $member = new Membro($login, $password, $id=null, $score, $role, $name, $privilege);
         $membersController->registerMemberDB($member);
                 
-        header("location../view/painel.php?valid=true");
+        header("location:../view/painel.php?valid=true");
 
     }
 
     if(isset($_POST['warningAttempt'])){
+
+        $advController = new AdvertenciasController();
+
         $date = $_POST['date'];
         $reason = $_POST['reason'];
         $score = $_POST['score'];
         $responsible = $_POST['responsible'];
         $dismissed = $_POST['dismissed'];
-        $adv = new Advertencia($date, $reason, $score, $responsible, $dismissed);
+        $idmember = $_POST['idmember'];
+
+        $adv = new Advertencia($id=null, $date, $reason, $score, $responsible, $dismissed, $idmember);
+        $advController->registerWarningDB($adv);
         if($adv->okay()){
             $_SESSION['okay'] = true;
-            header("location:../view/painel.php?send=true");
+            header("location:../view/paineladv.php?send=true");
         }
         
     }
