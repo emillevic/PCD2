@@ -10,6 +10,10 @@
     $advController = new AdvertenciasController();
     $advertencias = $advController->getAdvertenciasDB();
 
+    if(!isset($_SESSION["auth"])) {
+        header("location:../view/login.php");
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -98,9 +102,9 @@
                                                 <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
                                                 <img class='img img-responsive img-companyLogo' src='assets/images/ecomp/logoNome.png' width='200' height='50'></img>                                                                                                    
                                                 <h1 id='insideWidow' class='memberName text-right'>
-                                                    <i class='fa fa-user-o' aria-hidden='true'></i> Alisson Vilas
+                                                    <i class='fa fa-user-o' aria-hidden='true'></i>".$members[$i]['id']." - ".$members[$i]['name']."
                                                     <div id='insideWidow' class='memberClassification text-right'>
-                                                        DIRETOR
+                                                        ".$members[$i]['role']."
                                                     </div>
                                                 </h1>        
                                             </div>
@@ -111,11 +115,14 @@
                                                 <hr class='dark'>
                                                 <div>";
                                                     for ($j=0; $j < sizeof($advertencias) ; $j++) {
-                                                        echo "<p class='text-Window text-center'><span class='numberPunition'>#".$advertencias[$i]['id']." - </span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>".$advertencias[$i]['score']."</span> <span class='topicPunition'>PONTOS EM ".$advertencias[$i]['date']." POR " .$advertencias[$i]['reason']."<br><span class='responsiblePunition'>RESPONSÁVEL:</span>" .$advertencias[$i]['responsavel']."</p>";
-                                                            echo "<hr>"; 
+                                                        if($advertencias[$j]['idmember'] == $members[$i]['id']){
+                                                            echo "<p class='text-Window text-center'><span class='numberPunition'>#".$advertencias[$j]['id']." - </span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>".$advertencias[$j]['score']."</span> <span class='topicPunition'>PONTOS EM ".$advertencias[$j]['date']." POR " .$advertencias[$j]['reason']."<br><span class='responsiblePunition'>RESPONSÁVEL:</span>" .$advertencias[$j]['responsible']."</p>";
+                                                                echo "<hr>"; 
+                                                        }
                                                     }                                      
                                                 echo"</div>
                                                 <a href='paineladv.php' class='page-scroll btn btn-primary btn-xl sr-button'>Adicionar Advertência</a>
+                                                <a href='updateMember.php' class='page-scroll btn btn-primary btn-xl sr-button'>Atualizar Membro</a>
                                                 
                                             </div>
                                             </div>

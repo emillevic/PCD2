@@ -49,21 +49,50 @@
 
     }
 
+    if(isset($_POST['updateMemberAttempt'])){
+
+        $membersController = new MembersController();
+
+        $id = $_POST["id"];
+        $name = $_POST["name"]; 
+        $login = $_POST["login"];
+        $password = md5($_POST["password"]);
+        $score = $_POST["score"];
+        $role = $_POST["role"];
+        $privilege = $_POST["privilege"];
+
+        $member = new Membro($login, $password, $id, $score, $role, $name, $privilege);
+        $membersController->updateMemberDB($member);
+                
+        header("location:../view/update.php?valid=true");
+
+    }
+
     if(isset($_POST['warningAttempt'])){
 
         $advController = new AdvertenciasController();
-
+        
+        $idmember = $_POST['idmember'];
         $date = $_POST['date'];
         $reason = $_POST['reason'];
         $score = $_POST['score'];
         $responsible = $_POST['responsible'];
         $dismissed = $_POST['dismissed'];
-        $idmember = $_POST['idmember'];
-
+        
+    
         $adv = new Advertencia($id=null, $date, $reason, $score, $responsible, $dismissed, $idmember);
         $advController->registerWarningDB($adv);
+
         if($adv->okay()){
             $_SESSION['okay'] = true;
+            $mbmController = new MembersController();
+            $member = $mbmController->getMemberDB($adv->getIdMember());
+            $newScore = ($member[4] - $score);
+            
+            $member[4] = $newScore;
+            echo $member;
+
+            $mbmController->updateMemberScore($idmember, $newScore);
             header("location:../view/paineladv.php?send=true");
         }
         

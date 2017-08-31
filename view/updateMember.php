@@ -1,11 +1,7 @@
-<?php
-    session_start();
-    require_once("../database/Connection.class.php");
-    require_once("../controller/MembersController.class.php");
-
-    if(!isset($_SESSION["auth"])) {
-        header("location:../view/login.php");
-    }
+    <?php
+        session_start();
+        require_once("../database/Connection.class.php");
+        require_once("../controller/MembersController.class.php");
 ?>
 
 
@@ -61,12 +57,12 @@
         </div>
     </nav>
 
+    <div>
         <div class="modal-header">
             <img class="img img-responsive img-companyLogo" src="assets/images/ecomp/logoNome.png" width="200" height="50"></img>                                                                                                    
             <h1 id="insideWidow" class="memberName text-right">
                 <i class="fa fa-user-o" aria-hidden="true"></i>
                 <?php
-                    echo $_SESSION['id']. "  -  " ;
                     echo $_SESSION['name'];
 
                 ?>
@@ -80,47 +76,55 @@
         <div class="form">
         <div class="modal-body">
             <hr class="dark">
-            <p class="text-center historicTitle">Adicionar advertência</p>
+            <p class="text-center historicTitle">ATUALIZAR MEMBRO</p>
             <hr class="dark">
-               <div class="form">
-                    <hr><br>
-                    <form action="../routes/routes.php" method="POST">
-                        <label for="text">ID Membro:</label>
-                        <input type="number" name="idmember" placeholder="ID Membro"/>
-                        <br>
-                        <br>
-                        <label for="text">Data:</label>
-                        <input type="date" name="date" placeholder="Data"/>
-                        <br><br>
-                        <label for="text">Motivo:</label>
-                        <input type="text" name="reason" placeholder="Motivo" size="80"/>
-                        <br><br>
-                        <label for="number">Pontos:</label>
-                        <input type="number" name="score" placeholder="Pontos"/>
-                        <br><br>
-                        <label for="text">Responsável:</label>
-                        <input type="text" name="responsible" placeholder="Responsável"/>
-                        <br><br>
-                        <label for="text">Indeferido:</label><br>
-                        <input type="radio" name="dismissed" value="1"> Sim <br>
-                        <input type="radio" name="dismissed" value="0"> Não <br>
-                        <br><br>
-                        <input type="submit" name="warningAttempt" value="Enviar"/>
-                    </form>
-                </div>
+            <div>
+                <form action="../routes/routes.php" method="POST">
+                    <label for="text">ID:</label>
+                    <input type="text" name="id" placeholder="ID"/>
+                    <br>
+                    <br>
+                    <label for="text">Nome:</label>
+                    <input type="text" name="name" placeholder="Nome"/>
+                    <br>
+                    <br>
+                    <label for="text">Login:</label>
+                    <input type="text" name="login" placeholder="Login"/>
+                    <br><br>
+                    <label for="text">Senha:</label>
+                    <input type="text" name="password" placeholder="Senha"/>
+                    <br><br>
+                    <label for="number">Pontos:</label>
+                    <input type="number" name="score" placeholder="Pontos"/>
+                    <br><br>
+                    <label for="text">Cargo:</label>
+                    <input type="text" name="role" placeholder="Cargo"/>
+                    <br><br>
+                    <label for="text">Privilegio:</label><br>
+                    <input type="radio" name="privilege" value="1"> ADMINISTRADOR <br>
+                    <input type="radio" name="privilege" value="0"> USUÁRIO <br>
+                    <br><br>
+                    <input type="submit" name="updateMemberAttempt" value="Enviar"/>
+                </form>
+                <form action="../routes/routes.php" method="POST">
+                    <input type="submit" value="Logout" name="logoutAttempt"/>
+                </form>
             </div>
+
+        </div>
         </div>
         <a href="index.html" class="page-scroll btn btn-primary btn-xl sr-button">Voltar</a>
         </div>
         </div>
     </div>  
 
-
-
 <?php
-    if(isset($_GET['send'])){
-        if($_GET['send']=="true"){
-            echo "<h3>Advertência Enviada!</h3>";
+    if(isset($_GET['valid'])){
+        if($_GET['valid']=="true"){
+            echo "<h3>Membro Atualizado!</h3>";
         }
     }
 ?>
+
+</body>
+</html>

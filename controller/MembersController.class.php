@@ -22,7 +22,8 @@ class MembersController {
 	}
     public function getMemberDB($id){
         $member = [];
-        $query = "SELECT id=$id FROM membros;";
+        //$query = "SELECT id=$id FROM membros;";
+        $query = "SELECT * FROM membros WHERE id=".$id;
         $sql = $this->conn->query($query);
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
         	array_push($member, $row);
@@ -33,8 +34,30 @@ class MembersController {
     public function registerMemberDB($member){
         $conn = Connection::getInstance();
 
-        $query = "INSERT INTO membros(id,name,login,password,score,role,privilege) VALUES (null,'".$member->getName()."','".$member->getLogin()."','".$member->getPassword()."', '".$member->getScore()."', '".$member->getRole()."', '".$member->getPrivilege()."')"; //String com consulta SQL da inserção
+        $query = "INSERT INTO membros(id,name,login,password,score,role,privilege) VALUES (null,'".$member->getName()."','".$member->getLogin()."','".$member->getPassword()."', '".$member->getScore()."', '".$member->getRole()."', '".$member->getPrivilege()."')"; 
 
+        $sql = $conn->query($query);
+    }
+
+    public function updateMemberScore($id, $newScore){
+        $conn = Connection::getInstance();
+
+        $query = "UPDATE membros SET score = '$newScore' WHERE id = $id";
+        $sql = $conn->query($query);
+    }
+
+    public function updateMemberDB($member){
+        $conn = Connection::getInstance();
+
+        $score = $member->getScore();
+        $login = $member->getLogin();
+        $id = $member->getId();
+        $password = $member->getPassword();
+        $role = $member->getRole();
+        $name = $member->getName();
+        $privilege = $member->getPrivilege();
+
+        $query = "UPDATE membros SET score = '$score', login = '$login', password = '$password', role = '$role', name = '$name', privilege = '$privilege' WHERE id = $id";
         $sql = $conn->query($query);
     }
 

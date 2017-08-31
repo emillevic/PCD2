@@ -6,6 +6,7 @@
         public $score = null;
         public $responsible = null;
         public $dismissed = null;
+        public $idmember = null;
 
         function __construct($id=null, $date, $reason, $score, $responsible, $dismissed, $idmember){
             $this->id = $id;
