@@ -97,6 +97,25 @@
         }
         
     }
+    
+    if(isset($_POST['updateWarningAttempt'])){
+
+        $wngController = new AdvertenciasController();
+
+        $id = $_POST['id'];
+        $idmember = $_POST['idmember'];
+        $date = $_POST['date'];
+        $reason = $_POST['reason'];
+        $score = $_POST['score'];
+        $responsible = $_POST['responsible'];
+        $dismissed = $_POST['dismissed'];
+
+        $wng = new Advertencia($id, $date, $reason, $score, $responsible, $dismissed, $idmember);
+        $wngController->updateWarningDB($wng);
+                
+        header("location:../view/updateWarning.php?valid=true");
+
+    }
 
     if(isset($_POST['logoutAttempt'])) { 
         session_destroy(); 

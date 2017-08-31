@@ -123,6 +123,7 @@
                                                 echo"</div>
                                                 <a href='paineladv.php' class='page-scroll btn btn-primary btn-xl sr-button'>Adicionar Advertência</a>
                                                 <a href='updateMember.php' class='page-scroll btn btn-primary btn-xl sr-button'>Atualizar Membro</a>
+                                                <a href='updateWarning.php' class='page-scroll btn btn-primary btn-xl sr-button'>Atualizar Advertencia</a>
                                                 
                                             </div>
                                             </div>

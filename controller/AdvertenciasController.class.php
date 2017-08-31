@@ -39,7 +39,7 @@ class AdvertenciasController {
 		$dismissed = $warning->getDismissed();
 		$idmember = $warning->getIdmember();
 
-        $query = "UPDATE membros SET date = '$date', reason = '$reason', score = '$score', responsible = '$responsible', dismissed = '$dismissed', idmember = '$idmember' WHERE id = $id";
+        $query = "UPDATE advertencias SET `date` = '$date', reason = '$reason', score = '$score', responsible = '$responsible', dismissed = '$dismissed', idmember = '$idmember' WHERE id = $id";
         $sql = $conn->query($query);
     }
 
