@@ -88,6 +88,7 @@
             </h1>        
         </div>
         <div class="modal-body">
+            <p class="text-center historicTitle"><?php echo $_SESSION['score'] . " pontos" ?></p>
             <hr class="dark">
             <p class="text-center historicTitle">HISTÓRICO</p>
             <hr class="dark">
@@ -95,9 +96,12 @@
                 
  			<?php 
 				for ($i=0; $i < sizeof($advertencias) ; $i++) {
+
+                    if($advertencias[$i]['idmember'] == $_SESSION['id']){
                    
-                    echo "<p class='text-Window text-center'><span class='numberPunition'>#".$advertencias[$i]['id']." - </span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>".$advertencias[$i]['pontos']."</span> <span class='topicPunition'>PONTOS EM ".$advertencias[$i]['data']." POR " .$advertencias[$i]['motivo']."<br><span class='responsiblePunition'>RESPONSÁVEL:</span>" .$advertencias[$i]['idresponsavel']."</p>";
-                    echo "<hr>"; 
+                        echo "<p class='text-Window text-center'><span class='numberPunition'>#".$advertencias[$i]['id']." - </span> <span class='topicPunition'>PERDEU</span> <span class='numberPunition'>".$advertencias[$i]['score']."</span> <span class='topicPunition'>PONTOS EM ".$advertencias[$i]['date']." POR " .$advertencias[$i]['reason']."<br><span class='responsiblePunition'>RESPONSÁVEL:</span>" .$advertencias[$i]['responsible']."</p>";
+                        echo "<hr>"; 
+                    }
                 } 
                 ?>                                                                                                                        
             </div>
