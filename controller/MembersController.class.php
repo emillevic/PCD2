@@ -61,6 +61,14 @@ class MembersController {
         $sql = $conn->query($query);
     }
 
+    public function deleteMemberDB($id){
+		$conn = Connection::getInstance();
+
+		$query = "DELETE FROM membros WHERE id = $id";
+
+		$sql = $conn->query($query);
+	}
+
 
 
 }

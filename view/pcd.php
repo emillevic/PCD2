@@ -57,6 +57,9 @@
                     <li><a class="page-scroll scrollSuave" href="index.html">Página Inicial</a></li>
                     <li><a class="page-scroll scrollSuave" href="pcd.php">Membros</a></li>
                     <li><a class="page-scroll scrollSuave" href="painel.php">Cadastrar Membros</a></li>
+                    <li><a href="#dmember" rel="modal" class="page-scroll">Deletar Membro</a></li>
+                    <li><a href="#dwarning" rel="modal" class="page-scroll">Deletar Advertência</a></li>
+                    
                     
                 </ul>
             </div>
@@ -90,12 +93,12 @@
                                     <div class='img img-memberIcon img-circle img-responsive'>
                                         <img class='memberIcon' src='assets/images/ecomp/logo.png' width=180 height=180 alt='' />
                                         <div class='overlay'>
-                                            <a href='#window1' data-toggle='modal' class='expand pointsText'>".$members[$i]['score']." PONTOS</a>
+                                            <a href='#window".$i."' data-toggle='modal' class='expand pointsText'>".$members[$i]['score']." PONTOS</a>
                                         </div>
                                     </div>
 
                                     
-                                    <div class='modal fade' id='window1' tabindex='-1' role='dialog' aria-labelledby='window1' aria-hidden='true'>
+                                    <div class='modal fade' id='window".$i."' tabindex='-1' role='dialog' aria-labelledby='window".$i."' aria-hidden='true'>
                                         <div class='modal-dialog modal-lg modal-lg'>
                                             <div class='modal-content'>
                                             <div class='modal-header'>
@@ -143,14 +146,60 @@
     <br><br>
     <a href="painel.php" class="page-scroll btn btn-primary btn-xl sr-button">Cadastrar Membros</a>
     <br><br>
+    <!-- <a href="#dmember" rel="modal" class="page-scroll btn btn-primary btn-xl sr-button">Deletar Membro</a>
+    <br><br>
+    <a href="#dwarning" rel="modal" class="page-scroll btn btn-primary btn-xl sr-button">Deletar Advertência</a>
+    <br><br> -->
     <form action="../routes/routes.php" method="POST">
         <input class="btn btn-primary" type="submit" value="Logoff" name="logoutAttempt"/>
     </form>
     <hr>
     <br>
-
+    
 </div>
-                
+<div class="container">
+    <div class="row">
+    <div class="window" id="dmember">
+        <a href="#" class="fechar">X Fechar</a>
+        
+        <div class="form">
+            <div class="modal-body">
+                <hr class="dark">
+                <p class="text-center historicTitle">DELETAR MEMBRO</p>
+                <hr class="dark">
+                <div>
+                    <form action="../routes/routes.php" method="POST">
+                        <label for="text">ID Membro:</label>
+                        <input type="text" name="id" placeholder="ID Membro"/>
+                        <br>
+                        <input type="submit" name="deleteMemberAttempt" value="Enviar"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="window" id="dwarning">
+        <a href="#" class="fechar">X Fechar</a>
+        
+        <div class="form">
+            <div class="modal-body">
+                <hr class="dark">
+                <p class="text-center historicTitle">DELETAR ADVERTÊNCIA</p>
+                <hr class="dark">
+                <div>
+                    <form action="../routes/routes.php" method="POST">
+                        <label for="text">ID Advertência:</label>
+                        <input type="text" name="id" placeholder="ID Advertência"/>
+                        <br>
+                        <input type="submit" name="deleteWarningAttempt" value="Enviar"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- mascara para cobrir o site -->  
+    <div id="mascara"></div>
+</div>       
 </body>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"

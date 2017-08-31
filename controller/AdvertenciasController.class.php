@@ -43,6 +43,14 @@ class AdvertenciasController {
         $sql = $conn->query($query);
     }
 
+	public function deleteWarningDB($id){
+		$conn = Connection::getInstance();
+
+		$query = "DELETE FROM advertencias WHERE id = $id";
+
+		$sql = $conn->query($query);
+	}
+
 }
 
 ?>

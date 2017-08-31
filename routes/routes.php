@@ -68,6 +68,16 @@
 
     }
 
+    if(isset($_POST['deleteMemberAttempt'])){
+        $membersController = new MembersController();
+
+        $id = $_POST['id'];
+        
+        $membersController->deleteMemberDB($id);
+
+        header("location:../view/pcd.php");
+    }
+
     if(isset($_POST['warningAttempt'])){
 
         $advController = new AdvertenciasController();
@@ -115,6 +125,16 @@
                 
         header("location:../view/updateWarning.php?valid=true");
 
+    }
+
+    if(isset($_POST['deleteWarningAttempt'])){
+        $wngController = new AdvertenciasController();
+
+        $id = $_POST['id'];
+        
+        $wngController->deleteWarningDB($id);
+
+        header("location:../view/pcd.php");
     }
 
     if(isset($_POST['logoutAttempt'])) { 
