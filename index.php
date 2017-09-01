@@ -8,10 +8,10 @@
     echo $membro->getSenha();  */
     
     
-    
+    session_start();
     if(isset($_SESSION['auth'])){
         if($_SESSION['auth']){
-            header("location:../view/painel.php");
+            header("location:../view/pcd.php");
         }
         else{
             header("location:../view/login2.php");

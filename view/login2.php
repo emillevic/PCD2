@@ -1,8 +1,11 @@
 <?php
-
-if(!isset($_SESSION["auth"])) {
-    header("location:../view/login2.php");
-}
+    session_start();
+    
+    if(isset($_SESSION["auth"])) {
+        if($_SESSION["auth"]){
+            header("location:../view/pcd.php");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,7 @@ if(!isset($_SESSION["auth"])) {
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="assets/js/jquery-3.2.1.js"></script>
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
 <header>

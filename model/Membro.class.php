@@ -92,15 +92,18 @@
             $query = "SELECT * FROM `membros` WHERE `login` =  '$this->login' AND `password` = '$this->password'";
             $sql = $conn->query($query);
             $row = $sql->fetch(PDO::FETCH_ASSOC);
+            
+            if($row){
+                $this->id = $row['id'];
+                $this->score = $row['score'];
+                $this->role = $row['role'];
+                $this->name = $row['name'];
+                $this->privilege = $row['privilege']; 
+                // $historic = $row['historic']; 
+                return true;
+            }
 
-            $this->id = $row['id'];
-            $this->score = $row['score'];
-            $this->role = $row['role'];
-            $this->name = $row['name'];
-            $this->privilege = $row['privilege']; 
-           // $historic = $row['historic']; 
-
-            return $row; 
+            return false; 
 
         }
 

@@ -8,7 +8,7 @@
     session_start();
     if(isset($_POST["loginAttempt"])){
         $login = $_POST["login"];
-        $password = $_POST["password"];
+        $password = md5($_POST["password"]);
 
         $user = new Membro($login, $password);
         if($user->auth()){
