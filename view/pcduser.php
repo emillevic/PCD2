@@ -6,6 +6,9 @@
     $advController = new AdvertenciasController();
     $advertencias = $advController->getAdvertenciasDB();
 
+    if(!isset($_SESSION["auth"])) {
+        header("location:../view/login2.php");
+    }
 ?>
 
 
@@ -106,7 +109,15 @@
                 ?>                                                                                                                        
             </div>
         </div>
-        <a href="index.html" class="page-scroll btn btn-primary btn-xl sr-button">Voltar</a>
+        <div class="col-lg-12 text-center">
+            <hr>
+            <br><br>
+            <form action="../routes/routes.php" method="POST">
+                <input class="btn btn-primary" type="submit" value="Logoff" name="logoutAttempt"/>
+            </form>
+            <hr>
+            <br>    
+        </div>
         </div>
         </div>
     </div>  

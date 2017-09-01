@@ -1,3 +1,9 @@
+<?php
+
+if(!isset($_SESSION["auth"])) {
+    header("location:../view/login2.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +44,7 @@
                     <?php
                         if(isset($_GET['valid'])){
                             if($_GET['valid']!="true"){
-                                echo "<h3>Login Errado!</h3>";
+                                echo "<script>alert('Login Errado!')</script>";
                             }
                         }
                     ?>                      

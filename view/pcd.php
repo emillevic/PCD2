@@ -11,7 +11,11 @@
     $advertencias = $advController->getAdvertenciasDB();
 
     if(!isset($_SESSION["auth"])) {
-        header("location:../view/login.php");
+        header("location:../view/login2.php");
+    }
+    if($_SESSION['privilege']==0){
+        echo "<script>alert('Acesso negado!')</script>";
+        header("location:../view/pcduser.php");
     }
 
 ?>
@@ -88,6 +92,7 @@
 
         <div class="container">
             <div class="row">
+                <!-- Exibe os usuários do banco de dados -->
                 <?php
                     for($i=0; $i < sizeof($members) ; $i++) {
                             echo "<div id='effect-1' class='col-lg-4 col-sm-6 effects clearfix'>
@@ -385,11 +390,11 @@
             echo "<script>alert('Membro Registrado!')</script>";
         }
     }
-    if(isset($_GET['validRegisterWarning'])){
+/*     if(isset($_GET['validRegisterWarning'])){
         if($_GET['validRegisterWarning']=="true"){
             echo "<script>alert('Advertência Registrada!')</script>";
         }
-    }
+    } */
     if(isset($_GET['validDeleteWarning'])){
         if($_GET['validDeleteWarning']=="true"){
             echo "<script>alert('Advertência deletada!')</script>";

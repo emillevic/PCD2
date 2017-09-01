@@ -13,21 +13,23 @@ class MembersController {
 
 	public function getMembersDB(){
 		$members = [];
-        $query = "SELECT * FROM membros;";
+        $query = "SELECT * FROM membros";
         $sql = $this->conn->query($query);
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
         	array_push($members, $row);
         }
+        
         return $members;
 	}
     public function getMemberDB($id){
-        $member = [];
+        $member = array();
         //$query = "SELECT id=$id FROM membros;";
-        $query = "SELECT * FROM membros WHERE id=".$id;
+        $query = "SELECT * FROM `membros` WHERE `id` = $id";
         $sql = $this->conn->query($query);
         while($row = $sql->fetch(PDO::FETCH_ASSOC)){
         	array_push($member, $row);
         }
+        echo "<script>alert('".var_dump($member)."')</script>";
         return $member;
     }
 

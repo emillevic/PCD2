@@ -31,7 +31,7 @@
         }
     }
 
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["registerAttempt"])){
+    if(isset($_SESSION["auth"]) && isset($_POST["registerAttempt"])){
 
         $membersController = new MembersController();
 
@@ -49,7 +49,7 @@
 
     }
 
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["updateMemberAttempt"])){
+    if(isset($_SESSION["auth"]) && isset($_POST["updateMemberAttempt"])){
 
         $membersController = new MembersController();
 
@@ -68,7 +68,7 @@
 
     }
 
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["deleteMemberAttempt"])){
+    if(isset($_SESSION["auth"]) && isset($_POST["deleteMemberAttempt"])){
         $membersController = new MembersController();
 
         $id = $_POST["id"];
@@ -78,7 +78,7 @@
         header("location:../view/pcd.php?validDeleteMember=true");
     }
 
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["warningAttempt"])){
+    if(isset($_SESSION["auth"]) && isset($_POST["warningAttempt"])){
 
         $advController = new AdvertenciasController();
         
@@ -93,22 +93,32 @@
         $adv = new Advertencia($id=null, $date, $reason, $score, $responsible, $dismissed, $idmember);
         $advController->registerWarningDB($adv);
 
+        $mbmController = new MembersController();
+        $member = array();
+        $member = $mbmController->getMembersDB();
+
+        for($i=0;$i<sizeof($member);$i++){
+            if($member[$i]['id']==$idmember){
+                $newScore = ($member[$i]['score'] - $score);
+            }
+        }
+        
+        
+        echo "<script>alert('".var_dump($member)."')</script>";
+        $member['score'] = $newScore;
+        
+
+        $mbmController->updateMemberScore($idmember, $newScore);
+
         if($adv->okay()){
             $_SESSION["okay"] = true;
-            $mbmController = new MembersController();
-            $member = $mbmController->getMemberDB($adv->getIdMember());
-            $newScore = ($member[4] - $score);
-            
-            $member[4] = $newScore;
-            echo $member;
 
-            $mbmController->updateMemberScore($idmember, $newScore);
             header("location:../view/pcd.php?validRegisterWarning=true");
         }
         
     }
     
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["updateWarningAttempt"])){
+    if(isset($_SESSION["auth"]) && isset($_POST["updateWarningAttempt"])){
 
         $wngController = new AdvertenciasController();
 
@@ -127,7 +137,7 @@
 
     }
 
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["deleteWarningAttempt"])){
+    if(isset($_SESSION["auth"]) && isset($_POST["deleteWarningAttempt"])){
         $wngController = new AdvertenciasController();
 
         $id = $_POST["id"];
@@ -137,7 +147,7 @@
         header("location:../view/pcd.php?validDeleteWarning=true");
     }
 
-    if(isset($_SESSION["auth"]) && $_SESSION["auth"] = true && isset($_POST["logoutAttempt"])) { 
+    if(isset($_SESSION["auth"]) && isset($_POST["logoutAttempt"])) { 
         unset($_SESSION["auth"]);
         unset($_SESSION["login"]);
         session_destroy(); 
